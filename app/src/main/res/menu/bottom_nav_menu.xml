@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/more"
+        android:icon="@drawable/ic_vuesax_outline_more"
+        android:title="المزيد"
+        app:showAsAction="always"/>
+    <item android:id="@+id/notification"
+        android:icon="@drawable/ic_vuesax_linear_notification"
+        android:title="الإشعارات"
+        app:showAsAction="always"/>
+    <item android:id="@+id/categories"
+        android:icon="@drawable/ic_vuesax_linear_element_4"
+        android:title="الأقسام"
+        app:showAsAction="always"/>
+    <item android:id="@+id/home"
+        android:icon="@drawable/ic_vuesax_linear_home_2"
+        android:title="الرئيسية"
+        app:showAsAction="always"/>
+</menu>

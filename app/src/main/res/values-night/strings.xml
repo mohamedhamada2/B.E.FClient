@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_subscribed">اشترك</string>
+    <string name="msg_subscribe_failed">لم يتم الإشتراك</string>
+</resources>

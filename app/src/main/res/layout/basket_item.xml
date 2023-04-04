@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="@dimen/_4sdp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/product_img"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/_5sdp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/product_img"
+                android:id="@+id/linear1"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/_5sdp"
+                android:gravity="right">
+                <ImageView
+                    android:id="@+id/remove_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_baseline_cancel"
+                    android:layout_margin="@dimen/_5sdp"/>
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14ssp"
+                    android:textColor="#202020"
+                    android:gravity="right"
+                    android:text="55555555555555555555555555555N.K.R فلتر هواء ايسوزو"
+                    android:fontFamily="@font/dinnextextregular4"/>
+                <TextView
+                    android:id="@+id/product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="‏100 جنيه"
+                    android:textColor="#ABABAB"
+                    android:textSize="@dimen/_14ssp"
+                    android:fontFamily="@font/dinnextextregular4"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:foreground="@drawable/line_bg" />
+                <TextView
+                    android:id="@+id/product_price_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="‏54 جنيه"
+                    android:textColor="#202020"
+                    android:textSize="@dimen/_14ssp"
+                    android:fontFamily="@font/dinnextextregular4"
+                    android:layout_marginTop="@dimen/_5sdp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp">
+            <ImageView
+                android:id="@+id/minus_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_minus"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"/>
+            <ImageView
+                android:id="@+id/add_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_add"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/txt_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:fontFamily="@font/dinnextmedium3"
+                android:layout_centerInParent="true"
+                android:textColor="#202020"
+                android:textSize="@dimen/_16ssp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

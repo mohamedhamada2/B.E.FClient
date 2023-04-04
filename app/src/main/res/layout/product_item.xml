@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="@dimen/_3sdp"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:layout_marginLeft="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_20sdp"
+    android:layout_marginBottom="@dimen/_5sdp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/product_img"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"
+            android:layout_margin="@dimen/_5sdp"/>
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextextregular4"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="#202020"
+            android:text="llllllllllllllllllllllllllllllllllllllllllllllkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkmجججججججججججmmmmmllllllllllllllN.K.Rفلتر هواء ايسوزو"
+            android:layout_gravity="center_horizontal"
+            android:maxLines="3"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"/>
+
+        <TextView
+            android:id="@+id/product_before_offer_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="‏100 جنيه"
+            android:textColor="#ABABAB"
+            android:textSize="@dimen/_14ssp"
+            android:layout_gravity="right"
+            android:fontFamily="@font/dinnextextregular4"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:foreground="@drawable/line_bg" />
+        <TextView
+            android:id="@+id/product_after_offer_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextextbold2"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="#202020"
+            android:text="54 جنيه"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/_5sdp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_add_to_basket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_login_bg"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:text="تفاصيل المنتج"
+            android:fontFamily="@font/dinnextmedium3"
+            android:textSize="@dimen/_13ssp"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
