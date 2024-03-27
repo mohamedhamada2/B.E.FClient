@@ -107,6 +107,18 @@ public class Product {
     @Expose
     private String clientPacketPrice;
 
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
+    @SerializedName("balance")
+    @Expose
+    private Integer balance;
+
     public String getId() {
         return id;
     }

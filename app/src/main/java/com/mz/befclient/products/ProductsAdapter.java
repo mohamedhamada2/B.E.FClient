@@ -32,6 +32,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 import butterknife.BindView;
@@ -137,6 +138,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         Spinner spinner_type = view.findViewById(R.id.spinner_type);
         ImageView cancel_img = view.findViewById(R.id.cancel_img);
         Button btn_add_to_basket = view.findViewById(R.id.btn_add_to_basket);
+        CardView cardView = view.findViewById(R.id.empty_card);
         builder.setView(view);
         Dialog dialog3 = builder.create();
         dialog3.show();
@@ -145,6 +147,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         txt_frame .setText(product.getFrame());
         txt_fac .setText(product.getFac());
         txt_product_code.setText(product.getProductCode());
+        if (product.getBalance() == 0){
+            cardView.setVisibility(View.VISIBLE);
+            btn_add_to_basket.setVisibility(View.GONE);
+        }else {
+            cardView.setVisibility(View.GONE);
+            btn_add_to_basket.setVisibility(View.VISIBLE);
+        }
         if (product.getAllAmount() != null){
             txt_packet_amount.setText(product.getAllAmount());
         }else {
@@ -350,6 +359,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     class ProductsHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.product_name)
         TextView txt_product_name;
+
+        @BindView(R.id.empty_img)
+        CardView empty_img;
         @BindView(R.id.product_after_offer_price)
         TextView txt_product_after_offer_price;
         @BindView(R.id.product_before_offer_price)
@@ -377,6 +389,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                 Picasso.get().load("https://b.f.e.one-click.solutions/uploads/images/thumbs/"+product.getImg()).into(product_img);
             }else {
                 product_img.setImageResource(R.drawable.logo);
+            }
+            if (product.getBalance() == 0){
+                empty_img.setVisibility(View.VISIBLE);
+                Log.e("img","success");
+            }else {
+                empty_img.setVisibility(View.GONE);
+                Log.e("img","error");
             }
         }
     }

@@ -146,5 +146,9 @@ public interface GetDataService{
     @FormUrlEncoded
     @POST("api_clients/Api_clients/forget_password")
     Call<NewPassword> new_password(@Field("mob")String mob,@Field("password")String password);
+
+    /*@FormUrlEncoded
+    @POST("api_clients/Api_trader/get_product_details")
+    Call<ProductDetailsModel> get_product_datails(@Field("product_id")String product_id);*/
 }
 
