@@ -31,34 +31,33 @@
                     android:layout_height="@dimen/_90sdp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="@dimen/_5sdp">
-                <ImageView
-                    android:id="@+id/product_img"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:scaleType="fitXY"
-                    android:layout_margin="@dimen/_5sdp"/>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/empty_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:scaleType="fitXY"
-                    android:layout_margin="@dimen/_5sdp"
-                    app:cardBackgroundColor="#80CCCCCC"
-                    app:cardCornerRadius="@dimen/_60sdp"
-                    android:visibility="gone">
+                    <ImageView
+                        android:id="@+id/product_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:layout_margin="@dimen/_5sdp"/>
+                    <ImageView
+                        android:id="@+id/empty_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@drawable/ellipse_5"/>
                     <TextView
+                        android:id="@+id/out_of_stock_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cairo_semibold"
                         android:layout_gravity="center"
                         android:text="نفذت الكمية"
-                        android:textSize="@dimen/_9ssp"
+                        android:textSize="@dimen/_10ssp"
                         android:gravity="center"
                         android:padding="@dimen/_3sdp"
-                        android:textColor="@color/white"/>
-                </androidx.cardview.widget.CardView>
+                        android:textColor="@color/purple_500"
+                        android:visibility="gone"/>
                 </FrameLayout>
                 <TextView
                     android:id="@+id/product_name"

@@ -130,6 +130,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         TextView product_name = view.findViewById(R.id.product_name);
         TextView txt_product_code = view.findViewById(R.id.txt_product_code);
         TextView txt_packet_amount = view.findViewById(R.id.txt_packet_amount);
+        TextView out_of_stock_tv = view.findViewById(R.id.out_of_stock_tv);
         RelativeLayout relative_amount = view.findViewById(R.id.relative_amount);
         ImageView add_img = view.findViewById(R.id.add_img);
         ImageView minus_img = view.findViewById(R.id.minus_img);
@@ -138,7 +139,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         Spinner spinner_type = view.findViewById(R.id.spinner_type);
         ImageView cancel_img = view.findViewById(R.id.cancel_img);
         Button btn_add_to_basket = view.findViewById(R.id.btn_add_to_basket);
-        CardView cardView = view.findViewById(R.id.empty_card);
+        ImageView cardView = view.findViewById(R.id.empty_img);
         builder.setView(view);
         Dialog dialog3 = builder.create();
         dialog3.show();
@@ -149,9 +150,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         txt_product_code.setText(product.getProductCode());
         if (product.getBalance() == 0){
             cardView.setVisibility(View.VISIBLE);
+            out_of_stock_tv.setVisibility(View.VISIBLE);
             btn_add_to_basket.setVisibility(View.GONE);
         }else {
             cardView.setVisibility(View.GONE);
+            out_of_stock_tv.setVisibility(View.GONE);
             btn_add_to_basket.setVisibility(View.VISIBLE);
         }
         if (product.getAllAmount() != null){
@@ -302,21 +305,33 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                 }
                 try {
                     if (databaseClass.getDao().getallproducts().isEmpty()){
-                        databaseClass.getDao().AddtoBasket(fatoraDetail);
-                        Toast.makeText(context, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
-                        productActivity.setbasketsize(databaseClass.getDao().getallproducts().size()+"");
-                        dialog3.dismiss();
+                        if (product.getBalance() >= Integer.parseInt(fatoraDetail.getAmount())){
+                            databaseClass.getDao().AddtoBasket(fatoraDetail);
+                            Toast.makeText(context, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
+                            productActivity.setbasketsize(databaseClass.getDao().getallproducts().size()+"");
+                            dialog3.dismiss();
+                        }else {
+                            Toast.makeText(context, "الكمية المطلوبة غير متوفرة", Toast.LENGTH_SHORT).show();
+                        }
                     }else {
                         for (FatoraDetail fatoraDetail1:databaseClass.getDao().getallproducts()){
                             if (!fatoraDetail1.getProductIdFk().equals(product.getId())){
-                                databaseClass.getDao().AddtoBasket(fatoraDetail);
-                                Toast.makeText(context, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
-                                productActivity.setbasketsize(databaseClass.getDao().getallproducts().size()+"");
-                                dialog3.dismiss();
+                                if (product.getBalance() >= Integer.parseInt(fatoraDetail.getAmount())){
+                                    databaseClass.getDao().AddtoBasket(fatoraDetail);
+                                    Toast.makeText(context, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
+                                    productActivity.setbasketsize(databaseClass.getDao().getallproducts().size()+"");
+                                    dialog3.dismiss();
+                                }else {
+                                    Toast.makeText(context, "الكمية المطلوبة غير متوفرة", Toast.LENGTH_SHORT).show();
+                                }
                             }else {
-                                databaseClass.getDao().editproduct(fatoraDetail);
-                                Toast.makeText(context, "تمت التعديل بنجاح", Toast.LENGTH_SHORT).show();
-                                dialog3.dismiss();
+                                if (product.getBalance() >= Integer.parseInt(fatoraDetail.getAmount())){
+                                    databaseClass.getDao().editproduct(fatoraDetail);
+                                    Toast.makeText(context, "تمت التعديل بنجاح", Toast.LENGTH_SHORT).show();
+                                    dialog3.dismiss();
+                                }else {
+                                    Toast.makeText(context, "الكمية المطلوبة غير متوفرة", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     }
@@ -361,7 +376,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         TextView txt_product_name;
 
         @BindView(R.id.empty_img)
-        CardView empty_img;
+        ImageView empty_img;
+
+        @BindView(R.id.out_of_stock_tv)
+        TextView out_of_stock_tv;
         @BindView(R.id.product_after_offer_price)
         TextView txt_product_after_offer_price;
         @BindView(R.id.product_before_offer_price)
@@ -392,9 +410,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             }
             if (product.getBalance() == 0){
                 empty_img.setVisibility(View.VISIBLE);
-                Log.e("img","success");
+                out_of_stock_tv.setVisibility(View.VISIBLE);
+
             }else {
                 empty_img.setVisibility(View.GONE);
+                out_of_stock_tv.setVisibility(View.GONE);
                 Log.e("img","error");
             }
         }
