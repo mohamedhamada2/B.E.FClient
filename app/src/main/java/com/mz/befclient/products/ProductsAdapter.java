@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -37,6 +38,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductsHolder> {
     Context context;
@@ -116,6 +118,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                 createAlertDialog(productList.get(position));
             }
         });
+        holder.product_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createImageAlertDialog(productList.get(position));
+            }
+        });
     }
 
     private void createAlertDialog(Product product) {
@@ -140,6 +148,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         ImageView cancel_img = view.findViewById(R.id.cancel_img);
         Button btn_add_to_basket = view.findViewById(R.id.btn_add_to_basket);
         ImageView cardView = view.findViewById(R.id.empty_img);
+        FrameLayout frameLayout = view.findViewById(R.id.product_img_frame);
         builder.setView(view);
         Dialog dialog3 = builder.create();
         dialog3.show();
@@ -209,6 +218,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createImageAlertDialog(product);
             }
         });
         add_img.setOnClickListener(new View.OnClickListener() {
@@ -360,6 +375,36 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         product_details.setText(product.getDetails());
         txt_store_name.setText(store_name);
         Picasso.get().load(Constants.BASE_URL +"public/uploads/images/images/"+store_img).into(image_store_img);*/
+        Window window = dialog3.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setGravity(Gravity.CENTER_HORIZONTAL);
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+    }
+
+    private void createImageAlertDialog(Product product) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view1 = inflater.inflate(R.layout.img_dialog, null);
+        TextView out_of_stock_tv = view1.findViewById(R.id.out_of_stock_tv);
+        CircleImageView product_img = view1.findViewById(R.id.product_img2);
+        ImageView cardView = view1.findViewById(R.id.empty_img);
+        if (product.getImg() != null){
+            Picasso.get().load("https://b.f.e.one-click.solutions/uploads/images/thumbs/"+product.getImg()).into(product_img);
+        }else {
+            product_img.setImageResource(R.drawable.logo);
+        }
+        if (product.getBalance() == 0){
+            cardView.setVisibility(View.VISIBLE);
+            out_of_stock_tv.setVisibility(View.VISIBLE);
+
+        }else {
+            cardView.setVisibility(View.GONE);
+            out_of_stock_tv.setVisibility(View.GONE);
+        }
+
+        builder.setView(view1);
+        Dialog dialog3 = builder.create();
+        dialog3.show();
         Window window = dialog3.getWindow();
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         window.setGravity(Gravity.CENTER_HORIZONTAL);

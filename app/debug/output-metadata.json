@@ -4,14 +4,14 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.mz.alustul",
+  "applicationId": "com.mz.befclient",
   "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 7,
-      "versionName": "1.6",
+      "versionCode": 13,
+      "versionName": "2.2",
       "outputFile": "app-debug.apk"
     }
   ]

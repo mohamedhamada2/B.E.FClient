@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <FrameLayout
+                    android:id="@+id/product_img_frame"
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_gravity="center_horizontal"
