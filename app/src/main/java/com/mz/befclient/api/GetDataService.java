@@ -93,7 +93,7 @@ public interface GetDataService{
     Call<Order> get_user_orders(@Field("user_id")String user_id,@Field("status")String status,@Field("page")Integer page);
 
     @FormUrlEncoded
-    @POST("Api/get_fatora_details")
+    @POST("api_clients/Api_clients/get_fatora_detail")
     Call<BillDetailsModel> get_bill_details2(@Field("fatora_id")String fatora_id);
 
     @GET("api_clients/Api_clients/info")
