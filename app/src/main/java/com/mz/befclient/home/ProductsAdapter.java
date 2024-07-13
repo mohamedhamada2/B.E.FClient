@@ -1,5 +1,6 @@
 package com.mz.befclient.home;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +27,8 @@ import com.mz.befclient.R;
 import com.mz.befclient.basket.FatoraDetail;
 import com.mz.befclient.contactus.ContactUsActivity;
 import com.mz.befclient.data.DatabaseClass;
+import com.mz.befclient.data.MySharedPreference;
+import com.mz.befclient.login.UserModel;
 import com.mz.befclient.products.Product;
 import com.squareup.picasso.Picasso;
 
@@ -50,6 +53,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     List<String> buying;
     Integer count = 1;
     Double total_price,total_price_before_offer;
+    MySharedPreference mySharedPreference;
+    UserModel userModel;
     public ProductsAdapter(Context context, List<Product> productList,HomeFragment homeFragment) {
         this.context = context;
         this.productList = productList;
@@ -417,29 +422,46 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     }
 
     class ProductsHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.product_name)
+
+
         TextView txt_product_name;
-        @BindView(R.id.product_after_offer_price)
+
+
         TextView txt_product_after_offer_price;
-        @BindView(R.id.product_before_offer_price)
+
         TextView txt_product_before_offer_price;
-        @BindView(R.id.product_img)
+
         ImageView product_img;
-        @BindView(R.id.btn_add_to_basket)
+
         Button btn_add_to_basket;
-        @BindView(R.id.empty_img)
+
         ImageView empty_img;
 
-        @BindView(R.id.out_of_stock_tv)
-        TextView out_of_stock_tv;
+
         public ProductsHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            txt_product_name = itemView.findViewById(R.id.product_name);
+            txt_product_after_offer_price = itemView.findViewById(R.id.product_after_offer_price);
+            txt_product_before_offer_price = itemView.findViewById(R.id.product_before_offer_price);
+            product_img = itemView.findViewById(R.id.product_img);
+            btn_add_to_basket = itemView.findViewById(R.id.btn_add_to_basket);
+            empty_img = itemView.findViewById(R.id.empty_img);
         }
 
         public void setData(Product product) {
             databaseClass =  Room.databaseBuilder(context.getApplicationContext(), DatabaseClass.class,"basket").allowMainThreadQueries().fallbackToDestructiveMigration().build();
             txt_product_name.setText(product.getProductCode());
+            mySharedPreference = MySharedPreference.getInstance();
+            userModel = mySharedPreference.Get_UserData(context);
+            if (userModel != null){
+                txt_product_after_offer_price.setVisibility(View.VISIBLE);
+                txt_product_before_offer_price.setVisibility(View.VISIBLE);
+                btn_add_to_basket.setVisibility(View.VISIBLE);
+            }else {
+                txt_product_after_offer_price.setVisibility(View.GONE);
+                txt_product_before_offer_price.setVisibility(View.GONE);
+                btn_add_to_basket.setVisibility(View.GONE);
+            }
             if (product.getOfferIdFk()!= null){
                 txt_product_after_offer_price.setText(product.getOfferPrice());
                 txt_product_before_offer_price.setText(product.getOneSellPrice());

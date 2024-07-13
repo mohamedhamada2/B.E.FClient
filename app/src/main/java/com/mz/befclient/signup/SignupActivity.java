@@ -4,9 +4,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +29,7 @@ public class SignupActivity extends AppCompatActivity {
     List<City> cityList;
     List<String> governtitlelist,citytitlelist;
     Double lat=0.0,lon=0.0;
+    String deviceId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
         signupViewModel = new SignupViewModel(this);
         activitySignupBinding.setSignupviewmodel(signupViewModel);
         signupViewModel.getgovern();
+        deviceId = getSystemDetail();
         activitySignupBinding.backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +99,14 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("HardwareIds")
+    private String getSystemDetail() {
+        return Settings.Secure.getString(
+                getContentResolver(),
+        Settings.Secure.ANDROID_ID
+        );
+    }
+
     private void validation() {
         name = activitySignupBinding.etName.getText().toString();
         password = activitySignupBinding.etPassword.getText().toString();
@@ -102,7 +115,8 @@ public class SignupActivity extends AppCompatActivity {
         address = activitySignupBinding.etAddress.getText().toString();
         if (!TextUtils.isEmpty(name)&&!TextUtils.isEmpty(password)&&!TextUtils.isEmpty(shop)&&
         !TextUtils.isEmpty(mobile)&&!TextUtils.isEmpty(address)&&lat !=0.0&&lon!= 0.0){
-            signupViewModel.signup(name,govern_id,city_id,shop,mobile,address,lat,lon,password);
+            Log.e("deviceId",deviceId);
+            signupViewModel.signup(name,govern_id,city_id,shop,mobile,address,lat,lon,password,deviceId);
         }else{
             if (TextUtils.isEmpty(name)){
                 activitySignupBinding.etName.setError("أدخل إسمك");

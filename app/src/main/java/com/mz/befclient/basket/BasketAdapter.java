@@ -111,25 +111,32 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketHold
     }
 
     class BasketHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.product_name)
+
         TextView product_name;
-        @BindView(R.id.product_price)
         TextView product_price;
-        @BindView(R.id.product_price_offer)
+
         TextView product_price_offer;
-        @BindView(R.id.txt_amount)
+
         TextView txt_amount;
-        @BindView(R.id.add_img)
+
         ImageView add_img;
-        @BindView(R.id.minus_img)
+
         ImageView minus_img;
-        @BindView(R.id.product_img)
+
         ImageView product_img;
-        @BindView(R.id.remove_img)
+
         ImageView remove_img;
         public BasketHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            product_name = itemView.findViewById(R.id.product_name);
+            product_price = itemView.findViewById(R.id.product_price);
+            product_price_offer = itemView.findViewById(R.id.product_price_offer);
+            txt_amount = itemView.findViewById(R.id.txt_amount);
+            add_img = itemView.findViewById(R.id.add_img);
+            minus_img = itemView.findViewById(R.id.minus_img);
+            product_img = itemView.findViewById(R.id.product_img);
+            remove_img   = itemView.findViewById(R.id.remove_img);
+
         }
 
         public void setData(FatoraDetail basket) {

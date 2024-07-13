@@ -25,14 +25,14 @@ public class LoginViewModel {
         loginActivity = (LoginActivity) context;
     }
 
-    public void login_user(String phone, String password) {
+    public void login_user(String phone, String password,String deviceId) {
         mprefs = MySharedPreference.getInstance();
         if (Utilities.isNetworkAvailable(context)){
             ProgressDialog pd = new ProgressDialog(context);
             pd.setMessage("تحميل ...");
             pd.show();
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<UserModel> call = getDataService.login(phone, password);
+            Call<UserModel> call = getDataService.login(phone, password,deviceId);
             call.enqueue(new Callback<UserModel>() {
                 @Override
                 public void onResponse(Call<UserModel> call, Response<UserModel> response) {

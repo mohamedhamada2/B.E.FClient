@@ -30,7 +30,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.mz.befclient.R;
 import com.mz.befclient.data.MySharedPreference;
-import com.mz.befclient.databinding.ActivityMapsBinding;
 import com.mz.befclient.login.UserModel;
 
 
@@ -45,7 +44,7 @@ public class MapsActivity extends FragmentActivity implements
         GoogleMap.OnMarkerClickListener,OnMapReadyCallback{
         private SupportMapFragment mMap;
         FusedLocationProviderClient client;
-        private ActivityMapsBinding binding;
+
         private static final float Defult_Zoom = 15f;
         double lat, lon;
         StringBuilder address;

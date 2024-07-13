@@ -58,7 +58,11 @@ public class BillDetailsAdapter extends RecyclerView.Adapter<BillDetailsAdapter.
         TextView txt_total;
         public BillDetailsHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            product_name = itemView.findViewById(R.id.txt_product_name);
+            product_price = itemView.findViewById(R.id.txt_product_price);
+            product_amount = itemView.findViewById(R.id.txt_product_amount);
+            txt_offer_price = itemView.findViewById(R.id.txt_offer_price);
+            txt_total = itemView.findViewById(R.id.txt_total);
         }
 
         public void setData(Detail detail) {

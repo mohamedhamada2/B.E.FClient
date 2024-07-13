@@ -6,4 +6,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="msg_subscribed">اشترك</string>
     <string name="msg_subscribe_failed">لم يتم الإشتراك</string>
+    <string name="new_version_available">هناك إصدار أحدث من تطبيق BFE Clients متاح ، من فضلك قم بالتحديث الان ؟</string>
+    <string name="ok">تأكيد</string>
+    <string name="cancel">إلغاء</string>
 </resources>

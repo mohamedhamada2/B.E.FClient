@@ -25,8 +25,7 @@ import com.mz.befclient.signup.Govern;
 import java.util.HashMap;
 import java.util.List;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -52,7 +51,7 @@ public interface GetDataService{
                           @Field("city_id_fk")String city_id_fk,@Field("shop")String shop,
                           @Field("mob")String mob,@Field("adress")String adress,
                           @Field("latitude")String latitude,@Field("longitude")String longitude,
-                          @Field("password")String password);
+                          @Field("password")String password,@Field("deviceId")String deviceId);
     @GET("Api/get_governs")
     Call<List<Govern>> get_govern();
     @FormUrlEncoded
@@ -61,7 +60,7 @@ public interface GetDataService{
 
     @FormUrlEncoded
     @POST("api_clients/Api_clients/login")
-    Call<UserModel> login(@Field("mob")String name,@Field("password")String password);
+    Call<UserModel> login(@Field("mob")String name,@Field("password")String password,@Field("device_token")String device_token);
 
     @FormUrlEncoded
     @POST("api_clients/Api_clients/get_products_category")
@@ -93,7 +92,7 @@ public interface GetDataService{
     Call<Order> get_user_orders(@Field("user_id")String user_id,@Field("status")String status,@Field("page")Integer page);
 
     @FormUrlEncoded
-    @POST("Api/get_fatora_details")
+    @POST("api_clients/Api_clients/get_fatora_detail")
     Call<BillDetailsModel> get_bill_details2(@Field("fatora_id")String fatora_id);
 
     @GET("api_clients/Api_clients/info")
@@ -146,6 +145,10 @@ public interface GetDataService{
     @FormUrlEncoded
     @POST("api_clients/Api_clients/forget_password")
     Call<NewPassword> new_password(@Field("mob")String mob,@Field("password")String password);
+
+    @FormUrlEncoded
+    @POST("api_clients/Api_clients/update_version")
+    Call<ContactusModel> updateVersion(@Field("versionName")String versionName);
 
     /*@FormUrlEncoded
     @POST("api_clients/Api_trader/get_product_details")

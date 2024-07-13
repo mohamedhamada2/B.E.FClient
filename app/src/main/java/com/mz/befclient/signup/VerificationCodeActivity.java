@@ -34,7 +34,7 @@ public class VerificationCodeActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ActivityVerificationCodeBinding activityVerificationCodeBinding;
     VerificationCodeViewModel verificationCodeViewModel;
-    String name, phone, password, city_id, govern_id,address,shop, mVerificationId;
+    String name, phone, password, city_id, govern_id,address,shop, mVerificationId,deviceId;
     Uri filepath;
     Integer flag;
     Double lat,lon;
@@ -137,7 +137,7 @@ public class VerificationCodeActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             if(flag == 1){
-                                verificationCodeViewModel.signup(name,govern_id,city_id,shop,phone,address,lat,lon,password);
+                                verificationCodeViewModel.signup(name,govern_id,city_id,shop,phone,address,lat,lon,password,deviceId);
                             }else if (flag == 3){
                                 Intent intent = new Intent(VerificationCodeActivity.this, NewPasswordActivity.class);
                                 intent.putExtra("phone",phone);
@@ -168,6 +168,7 @@ public class VerificationCodeActivity extends AppCompatActivity {
             city_id = getIntent().getStringExtra("city_id");
             govern_id = getIntent().getStringExtra("govern_id");
             address = getIntent().getStringExtra("address");
+            deviceId = getIntent().getStringExtra("deviceId");
             activityVerificationCodeBinding.txtPhone.setText("+2"+phone);
             sendVerificationCodeToUser("+2"+phone);
         }else if (flag == 3){

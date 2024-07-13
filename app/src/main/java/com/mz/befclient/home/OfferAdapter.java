@@ -59,15 +59,17 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferHolder>
     }
 
     class OfferHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.txt_offer_name)
+
         TextView txt_offer_name;
-        @BindView(R.id.txt_offer_nesba)
+
         TextView txt_offer_nesba;
-        @BindView(R.id.offer_img)
+
         ImageView offer_img;
         public OfferHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            txt_offer_name = itemView.findViewById(R.id.txt_offer_name);
+            txt_offer_nesba = itemView.findViewById(R.id.txt_offer_nesba);
+            offer_img = itemView.findViewById(R.id.offer_img);
         }
 
         public void setData(Offer offer) {

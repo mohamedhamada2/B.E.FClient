@@ -83,7 +83,7 @@ public class SignupViewModel {
         }
     }
 
-    public void signup(String name, String govern_id, String city_id, String shop, String mobile, String address, Double lat, Double lon, String password) {
+    public void signup(String name, String govern_id, String city_id, String shop, String mobile, String address, Double lat, Double lon, String password,String deviceId) {
         Intent intent = new Intent(signupActivity,VerificationCodeActivity.class);
         intent.putExtra("name",name);
         intent.putExtra("govern_id",govern_id);
@@ -94,7 +94,9 @@ public class SignupViewModel {
         intent.putExtra("lat",lat);
         intent.putExtra("lon",lon);
         intent.putExtra("password",password);
+        intent.putExtra("deviceId",deviceId);
         intent.putExtra("flag",1);
+
         context.startActivity(intent);
         /*mprefs = MySharedPreference.getInstance();
         if (Utilities.isNetworkAvailable(context)){

@@ -3,6 +3,7 @@ package com.mz.befclient.signup;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.mz.befclient.Utilities.Utilities;
@@ -27,14 +28,15 @@ public class VerificationCodeViewModel {
         verificationCodeActivity = (VerificationCodeActivity) context;
     }
 
-    public void signup(String name, String govern_id, String city_id, String shop, String phone, String address, Double lat, Double lon, String password) {
+    public void signup(String name, String govern_id, String city_id, String shop, String phone, String address, Double lat, Double lon, String password,String deviceId) {
+        Log.e("deviceId",deviceId);
         mprefs = MySharedPreference.getInstance();
         if (Utilities.isNetworkAvailable(context)){
             ProgressDialog pd = new ProgressDialog(context);
             pd.setMessage("تحميل ...");
             pd.show();
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<UserModel> call = getDataService.signup(name,govern_id,city_id,shop,phone,address,lat+"",lon+"",password);
+            Call<UserModel> call = getDataService.signup(name,govern_id,city_id,shop,phone,address,lat+"",lon+"",password,deviceId);
             call.enqueue(new Callback<UserModel>() {
                 @Override
                 public void onResponse(Call<UserModel> call, Response<UserModel> response) {
