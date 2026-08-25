@@ -1,12 +1,18 @@
 package com.mz.befclient.main;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.room.Room;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -48,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
     UserModel userModel;
     DatabaseClass databaseClass;
     //Integer basket_size;
+
+    private final ActivityResultLauncher<String> notificationPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
+                if (!granted) {
+                    Log.w(TAG, "POST_NOTIFICATIONS denied; push notifications will not be shown");
+                }
+            });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +78,24 @@ public class MainActivity extends AppCompatActivity {
         notificationsFragment = new NotificationsFragment();
         categoriesFragment = new CategoriesFragment();
         profileFragment = new ProfileFragment();
+        askNotificationPermission();
         getfirebasetoken();
         getDataIntent();
 
+    }
+
+    /**
+     * Android 13+ requires POST_NOTIFICATIONS to be granted at runtime before FCM
+     * notifications can be displayed. On older releases the permission is implicit.
+     */
+    private void askNotificationPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return;
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+        }
     }
 
     private void getfirebasetoken() {
@@ -78,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             msg = getString(R.string.msg_subscribe_failed);
                         }
-                        Log.d("TAG", msg);
+                        Log.d("TAG1", msg);
                         //Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -17,6 +17,7 @@ import com.mz.befclient.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -24,26 +25,35 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 public class FCMMessagingService extends FirebaseMessagingService {
     String type = "";
 
+    private static final String CHANNEL_ID = "HEADS_UP_NOTIFICATION";
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        sendNotification(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
+        RemoteMessage.Notification notification = remoteMessage.getNotification();
+        if (notification != null) {
+            sendNotification(notification.getTitle(), notification.getBody());
+        } else {
+            // Data-only message: fall back to the data payload instead of crashing.
+            sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("body"));
+        }
         super.onMessageReceived(remoteMessage);
     }
 
     private void sendNotification(String title2,String messageBody) {
         //Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            final String CHANNEL_ID = "HEADS_UP_NOTIFICATION";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, "heads up notification", importance);
             getSystemService(NotificationManager.class).createNotificationChannel(mChannel);
-            Notification.Builder notification = new Notification.Builder(this,CHANNEL_ID);
-            notification.setContentTitle(title2);
-            notification.setContentText(messageBody);
-            notification.setSmallIcon(R.drawable.logo);
-            notification.setAutoCancel(true);
-            NotificationManagerCompat.from(this).notify(1,notification.build());
         }
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this, CHANNEL_ID);
+        notification.setContentTitle(title2);
+        notification.setContentText(messageBody);
+        notification.setSmallIcon(R.drawable.logo);
+        notification.setPriority(NotificationCompat.PRIORITY_HIGH);
+        notification.setAutoCancel(true);
+        // No-op (and logged by the platform) when POST_NOTIFICATIONS is denied on Android 13+.
+        NotificationManagerCompat.from(this).notify(1, notification.build());
         /*Intent intent = new Intent("com.alatheer.noamany_FCM-MESSAGE");
         intent.putExtra("title",title2);
         intent.putExtra("message",messageBody);

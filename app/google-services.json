@@ -2,9 +2,53 @@
   "project_info": {
     "project_number": "269169696586",
     "project_id": "bfzidan",
-    "storage_bucket": "bfzidan.appspot.com"
+    "storage_bucket": "bfzidan.firebasestorage.app"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269169696586:android:011427ae7b23cc8e466bb3",
+        "android_client_info": {
+          "package_name": "com.mz.aesica"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
+        {
+          "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269169696586:android:107f8bb2d5dc15f2466bb3",
+        "android_client_info": {
+          "package_name": "com.mz.alustul_mandoub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
+        {
+          "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:269169696586:android:ccd11347cde24968466bb3",
@@ -12,33 +56,18 @@
           "package_name": "com.mz.befclient"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "269169696586-mo815fsco36db5ek32v9cp5e3c92k89n.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mz.befclient",
-            "certificate_hash": "4485a3234106b1961fa97f11595d1745db1517d1"
-          }
-        },
-        {
-          "client_id": "269169696586-8h4sqgfgui56cj5qrrqok0eisdt604o9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
         {
           "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "269169696586-8h4sqgfgui56cj5qrrqok0eisdt604o9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     },
@@ -49,33 +78,128 @@
           "package_name": "com.mz.bf"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "269169696586-ijmdu51t0eaf02jko2p3bf1m3kntk6f7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mz.bf",
-            "certificate_hash": "4485a3234106b1961fa97f11595d1745db1517d1"
-          }
-        },
-        {
-          "client_id": "269169696586-8h4sqgfgui56cj5qrrqok0eisdt604o9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
         {
           "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "269169696586-8h4sqgfgui56cj5qrrqok0eisdt604o9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269169696586:android:8c7183408efd3d7e466bb3",
+        "android_client_info": {
+          "package_name": "com.mz.bf2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
+        {
+          "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269169696586:android:bc11c24fa5734bab466bb3",
+        "android_client_info": {
+          "package_name": "ctraders"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
+        {
+          "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269169696586:android:69e362072194377d466bb3",
+        "android_client_info": {
+          "package_name": "com.mz.medical_islands"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
+        {
+          "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269169696586:android:570ee675dd80b922466bb3",
+        "android_client_info": {
+          "package_name": "com.mz.pure"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
+        {
+          "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269169696586:android:3b639c0e181d2595466bb3",
+        "android_client_info": {
+          "package_name": "com.mz.puretherm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
+        {
+          "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
         }
       }
     },
@@ -86,33 +210,18 @@
           "package_name": "com.mz.rolex"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "269169696586-5qfoivi39ofsntb6jf3gqeuk7aum2no3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mz.rolex",
-            "certificate_hash": "4485a3234106b1961fa97f11595d1745db1517d1"
-          }
-        },
-        {
-          "client_id": "269169696586-8h4sqgfgui56cj5qrrqok0eisdt604o9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
+        {
+          "current_key": "AIzaSyAqpw6OY1_EWg-cARP9xIhwo3-Pkrm40IM"
+        },
         {
           "current_key": "AIzaSyDekQNlKoCl_ILck-sgrDTOqBkI9wwqvSc"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "269169696586-8h4sqgfgui56cj5qrrqok0eisdt604o9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -9,8 +9,19 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Edge-to-edge is mandatory from Android 15 (targetSdk 35+): android:statusBarColor
+             is ignored there, so the bars are transparent on every version for a consistent
+             look. Content is kept clear of them by android:fitsSystemWindows on each
+             activity layout's root view. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- Screen backgrounds are light (#FAFAFA), so the bar icons must be dark to stay legible. -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <!-- Suppress the system's automatic translucent scrim behind the bars; the light
+             background already gives the dark icons enough contrast. -->
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="Widget.BottomNavigationView"

@@ -3,15 +3,17 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+
 android {
-    compileSdkVersion 34
+    namespace "com.mz.befclient"
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.mz.befclient"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdk 36
         versionCode 14
-        versionName "2.3"
+        versionName "3.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,6 +34,8 @@ android {
     buildFeatures {
 
         dataBinding true
+        // AGP 8 no longer generates BuildConfig by default (used in SplashActivity)
+        buildConfig true
 
 
         // for view binding:
@@ -39,6 +43,7 @@ android {
     }
 }
 def sizes_version = '1.0.6'
+def room_version = '2.7.2'
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -62,10 +67,13 @@ dependencies {
     implementation "com.google.android.gms:play-services-location:19.0.0"
     implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
-    implementation "androidx.room:room-runtime:2.6.1"
-    annotationProcessor "androidx.room:room-compiler:2.6.1"
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    // Must go through kapt, not annotationProcessor: the kotlin-kapt plugin takes over
+    // annotation processing for this module, so annotationProcessor entries are ignored
+    // and the Room _Impl classes would never be generated. Room 2.7+ is required for
+    // kapt to work under Kotlin 2.x (2.6.1 fails with "processingEnv must not be null").
+    kapt "androidx.room:room-compiler:$room_version"
     implementation platform('com.google.firebase:firebase-bom:31.0.3')
 
     // When using the BoM, you don't specify versions in Firebase library dependencies
