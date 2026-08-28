@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.mz.befclient.Utilities.Utilities;
 import com.mz.befclient.api.GetDataService;
 import com.mz.befclient.api.RetrofitClientInstance;
+import com.mz.befclient.data.MySharedPreference;
 
 import java.util.List;
 
@@ -24,10 +25,14 @@ public class ProductsViewModel {
         productActivity = (ProductActivity) context;
     }
 
+    private String getUserId() {
+        return MySharedPreference.getInstance().getUserId(context);
+    }
+
     public void get_category_products(String category_id, int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products(category_id,page);
+            Call<ProductModel> call = getDataService.get_products(getUserId(),category_id,page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -54,7 +59,7 @@ public class ProductsViewModel {
     public void PerformPagination(String category_id, int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products(category_id,page);
+            Call<ProductModel> call = getDataService.get_products(getUserId(),category_id,page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -78,7 +83,7 @@ public class ProductsViewModel {
     public void get_offer_products(String offer_id, int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products_offer(offer_id,page);
+            Call<ProductModel> call = getDataService.get_products_offer(getUserId(),offer_id,page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -105,7 +110,7 @@ public class ProductsViewModel {
     public void PerformOfferPagination(String offer_id, int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products_offer(offer_id,page);
+            Call<ProductModel> call = getDataService.get_products_offer(getUserId(),offer_id,page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -129,7 +134,7 @@ public class ProductsViewModel {
     public void get_all_products(int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products(page);
+            Call<ProductModel> call = getDataService.get_products(getUserId(),page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -156,7 +161,7 @@ public class ProductsViewModel {
     public void PerformPagination3(int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products(page);
+            Call<ProductModel> call = getDataService.get_products(getUserId(),page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -180,7 +185,7 @@ public class ProductsViewModel {
     public void search_category_products(String word,String category_id, int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.search_product(word,category_id,page);
+            Call<ProductModel> call = getDataService.search_product(getUserId(),word,category_id,page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -207,7 +212,7 @@ public class ProductsViewModel {
     public void search_all_products(String word, int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.search_product(word,"",page);
+            Call<ProductModel> call = getDataService.search_product(getUserId(),word,"",page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -234,7 +239,7 @@ public class ProductsViewModel {
     public void search_offer_products(String word, String offer_id, int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.search_products_offer(offer_id,page,word);
+            Call<ProductModel> call = getDataService.search_products_offer(getUserId(),offer_id,page,word);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {

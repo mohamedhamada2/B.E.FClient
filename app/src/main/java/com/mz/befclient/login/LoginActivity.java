@@ -13,7 +13,6 @@ import android.view.View;
 import com.mz.befclient.R;
 import com.mz.befclient.databinding.ActivityLoginBinding;
 import com.mz.befclient.forgetpassword.ForgetPasswordActivity;
-import com.mz.befclient.main.MainActivity;
 import com.mz.befclient.signup.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -32,12 +31,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-            }
-        });
-        activityLoginBinding.txtSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });
         activityLoginBinding.txtForgetPassword.setOnClickListener(new View.OnClickListener() {

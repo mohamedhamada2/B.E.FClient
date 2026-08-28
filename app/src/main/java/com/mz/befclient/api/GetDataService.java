@@ -64,25 +64,26 @@ public interface GetDataService{
 
     @FormUrlEncoded
     @POST("app/Api_clients/get_products_category")
-    Call<ProductModel> get_products(@Field("cat_id_fk")String cat_id_fk, @Field("page")Integer page);
+    Call<ProductModel> get_products(@Field("user_id")String user_id, @Field("cat_id_fk")String cat_id_fk, @Field("page")Integer page);
 
     @FormUrlEncoded
     @POST("app/Api_clients/get_products_category")
-    Call<ProductModel> get_products(@Field("page")Integer page);
+    Call<ProductModel> get_products(@Field("user_id")String user_id, @Field("page")Integer page);
 
-    @GET("app/Api_clients/get_products_category")
-    Call<ProductModel> get_products_home();
+    @FormUrlEncoded
+    @POST("app/Api_clients/get_products_category")
+    Call<ProductModel> get_products_home(@Field("user_id")String user_id);
 
     @GET("app/Api_clients/get_offers")
     Call<OfferModel> get_offers();
 
     @FormUrlEncoded
     @POST("app/Api_clients/offer_product")
-    Call<ProductModel> get_products_offer(@Field("offer_id_fk")String offer_id_fk, @Field("page")Integer page);
+    Call<ProductModel> get_products_offer(@Field("user_id")String user_id, @Field("offer_id_fk")String offer_id_fk, @Field("page")Integer page);
 
     @FormUrlEncoded
     @POST("app/Api_clients/offer_product")
-    Call<ProductModel> search_products_offer(@Field("offer_id_fk")String offer_id_fk,@Field("page")Integer page,@Field("search_word")String search_word);
+    Call<ProductModel> search_products_offer(@Field("user_id")String user_id,@Field("offer_id_fk")String offer_id_fk,@Field("page")Integer page,@Field("search_word")String search_word);
 
     @POST("app/Api_clients/save_basket")
     Call<SuccessModel> save_basket(@Body BasketModel basketModel);
@@ -100,7 +101,8 @@ public interface GetDataService{
 
     @FormUrlEncoded
     @POST("app/Api_clients/search_product")
-    Call<ProductModel> search_product(@Field("search_word")String search_word,
+    Call<ProductModel> search_product(@Field("user_id")String user_id,
+                                      @Field("search_word")String search_word,
                                       @Field("category_id_fk")String category_id_fk,
                                       @Field("page")Integer page);
     @FormUrlEncoded

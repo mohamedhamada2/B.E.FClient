@@ -6,6 +6,7 @@ import com.mz.befclient.R;
 import com.mz.befclient.Utilities.Utilities;
 import com.mz.befclient.api.GetDataService;
 import com.mz.befclient.api.RetrofitClientInstance;
+import com.mz.befclient.data.MySharedPreference;
 import com.mz.befclient.products.Product;
 import com.mz.befclient.products.ProductModel;
 
@@ -28,6 +29,10 @@ public class HomeViewModel {
     public HomeViewModel(Context context, HomeFragment homeFragment) {
         this.context = context;
         this.homeFragment = homeFragment;
+    }
+
+    private String getUserId() {
+        return MySharedPreference.getInstance().getUserId(context);
     }
 
     public void getCategories() {
@@ -81,7 +86,7 @@ public class HomeViewModel {
         productList = new ArrayList<>();
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products_home();
+            Call<ProductModel> call = getDataService.get_products_home(getUserId());
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -106,7 +111,7 @@ public class HomeViewModel {
     public void PerformPagination() {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products_home();
+            Call<ProductModel> call = getDataService.get_products_home(getUserId());
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -150,7 +155,7 @@ public class HomeViewModel {
     public void search_all_products(String word, int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.search_product(word,"",page);
+            Call<ProductModel> call = getDataService.search_product(getUserId(),word,"",page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
@@ -172,7 +177,7 @@ public class HomeViewModel {
     public void PerformPagination3(int page) {
         if (Utilities.isNetworkAvailable(context)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<ProductModel> call = getDataService.get_products(page);
+            Call<ProductModel> call = getDataService.get_products(getUserId(),page);
             call.enqueue(new Callback<ProductModel>() {
                 @Override
                 public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {

@@ -59,6 +59,14 @@ public class MySharedPreference {
     }
 
 
+    public String getUserId(Context context) {
+        try {
+            return Get_UserData(context).getData().getId();
+        } catch (Exception e) {
+            return "0";
+        }
+    }
+
     public UserModel Get_UserData(Context context){
         mPrefs = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         Gson gson=new Gson();
