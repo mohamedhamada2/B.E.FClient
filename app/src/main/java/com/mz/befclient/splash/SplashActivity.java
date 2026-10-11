@@ -22,6 +22,8 @@ import com.mz.befclient.forceDialog.ForceUpdateDialogFragment;
 import com.mz.befclient.login.LoginActivity;
 import com.mz.befclient.login.UserModel;
 import com.mz.befclient.main.MainActivity;
+import com.mz.befclient.productDetails.ProductDetailsActivity;
+import com.mz.befclient.service.FCMMessagingService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,7 +67,14 @@ public class SplashActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if (loginModel != null) {
-                                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                                        Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
+                                        // Opened from a notification tray message holding a product id
+                                        String productId = FCMMessagingService.extractProductId(getIntent().getStringExtra(FCMMessagingService.KEY_MORE_DATA));
+                                        if (productId != null && !productId.isEmpty()) {
+                                            startActivities(new Intent[]{mainIntent, ProductDetailsActivity.newIntent(SplashActivity.this, productId)});
+                                        } else {
+                                            startActivity(mainIntent);
+                                        }
                                         finish();
                                     } else {
                                         startActivity(new Intent(SplashActivity.this, LoginActivity.class));

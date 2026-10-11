@@ -1,9 +1,6 @@
 package com.mz.befclient.api;
 
 
-
-
-import com.facebook.internal.AppCall;
 import com.mz.befclient.about.AppModel;
 import com.mz.befclient.basket.BasketModel;
 import com.mz.befclient.basket.SuccessModel;
@@ -14,30 +11,22 @@ import com.mz.befclient.home.ImageModel;
 import com.mz.befclient.home.OfferModel;
 import com.mz.befclient.login.UserModel;
 import com.mz.befclient.main.Token;
-import com.mz.befclient.notifications.NotificationAdapter;
 import com.mz.befclient.notifications.NotificationModel;
 import com.mz.befclient.orders.BillDetailsModel;
 import com.mz.befclient.orders.Order;
+import com.mz.befclient.productDetails.ProductDetailsModel;
 import com.mz.befclient.products.ProductModel;
 import com.mz.befclient.signup.City;
 import com.mz.befclient.signup.Govern;
 
-import java.util.HashMap;
 import java.util.List;
-
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.PartMap;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface GetDataService{
     @GET("app/Api_clients/get_categories")
@@ -152,8 +141,8 @@ public interface GetDataService{
     @POST("app/Api_clients/update_version")
     Call<ContactusModel> updateVersion(@Field("versionName")String versionName);
 
-    /*@FormUrlEncoded
-    @POST("api_clients/Api_trader/get_product_details")
-    Call<ProductDetailsModel> get_product_datails(@Field("product_id")String product_id);*/
+    @FormUrlEncoded
+    @POST("app/Api_clients/get_product_details")
+    Call<ProductDetailsModel> get_product_details(@Field("product_id")String product_id);
 }
 
