@@ -9,4 +9,5 @@
     <string name="new_version_available">هناك إصدار أحدث من تطبيق BFE Clients متاح ، من فضلك قم بالتحديث الان ؟</string>
     <string name="ok">تأكيد</string>
     <string name="cancel">إلغاء</string>
+    <string name="login_to_view_product">برجاء تسجيل الدخول اولا لمشاهدة تفاصيل المنتج</string>
 </resources>

@@ -10,6 +10,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.mz.befclient.R;
+import com.mz.befclient.data.MySharedPreference;
 import com.mz.befclient.productDetails.ProductDetailsActivity;
 import com.mz.befclient.splash.SplashActivity;
 
@@ -85,20 +86,21 @@ public class FCMMessagingService extends FirebaseMessagingService {
             getSystemService(NotificationManager.class).createNotificationChannel(mChannel);
         }
         Intent intent;
-        if (isEmpty(productId)) {
-            // No product id: open the whole app from the start
-            intent = new Intent(this, SplashActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        } else {
+        boolean openProduct = !isEmpty(productId) && isUserLoggedIn();
+        if (openProduct) {
             // Tapping the notification opens the product details screen, which calls get_product_details with this id
             intent = ProductDetailsActivity.newIntent(this, productId);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } else {
+            // No product id or user not logged in: open the whole app from the start
+            intent = new Intent(this, SplashActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         }
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             flags |= PendingIntent.FLAG_IMMUTABLE;
         }
-        int requestCode = isEmpty(productId) ? 0 : productId.hashCode();
+        int requestCode = openProduct ? productId.hashCode() : 0;
         NotificationCompat.Builder notification = new NotificationCompat.Builder(this, CHANNEL_ID);
         notification.setContentTitle(title);
         notification.setContentText(message);
@@ -108,6 +110,16 @@ public class FCMMessagingService extends FirebaseMessagingService {
         notification.setContentIntent(PendingIntent.getActivity(this, requestCode, intent, flags));
         // No-op (and logged by the platform) when POST_NOTIFICATIONS is denied on Android 13+.
         NotificationManagerCompat.from(this).notify(1, notification.build());
+    }
+
+    /** Same check SplashActivity uses: saved user data means the user is logged in. */
+    private boolean isUserLoggedIn() {
+        try {
+            return MySharedPreference.getInstance().Get_UserData(this) != null;
+        } catch (Exception e) {
+            Log.w(TAG, "Could not read saved user data", e);
+            return false;
+        }
     }
 
     private static JSONObject parseJson(String text) {

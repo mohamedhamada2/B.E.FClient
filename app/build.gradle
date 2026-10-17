@@ -12,8 +12,8 @@ android {
         applicationId "com.mz.befclient"
         minSdkVersion 21
         targetSdk 36
-        versionCode 25
-        versionName "3.5"
+        versionCode 27
+        versionName "3.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -216,7 +216,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private void updatePrice() {
         txt_amount.setText(count + "");
         String offerPrice = isPieceSelected() ? product.getOfferPrice() : product.getPacketOfferPrice();
-        String clientPrice = isPieceSelected() ? product.getClientOnePrice() : product.getClientPacketPrice();
+        String clientPrice = isPieceSelected() ? product.getOneSellPrice() : product.getPacketSellPrice();
         if (clientPrice == null) {
             return;
         }

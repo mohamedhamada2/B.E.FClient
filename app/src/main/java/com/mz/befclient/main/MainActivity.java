@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getfirebasetoken() {
-        FirebaseMessaging.getInstance().subscribeToTopic("bfe1")
+        FirebaseMessaging.getInstance().subscribeToTopic("bfe")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

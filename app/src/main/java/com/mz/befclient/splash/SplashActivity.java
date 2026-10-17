@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.mz.befclient.BuildConfig;
 import com.mz.befclient.R;
@@ -77,6 +78,9 @@ public class SplashActivity extends AppCompatActivity {
                                         }
                                         finish();
                                     } else {
+                                        if (notificationProductId() != null) {
+                                            Toast.makeText(SplashActivity.this, R.string.login_to_view_product, Toast.LENGTH_LONG).show();
+                                        }
                                         startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                                         finish();
                                     }
@@ -105,5 +109,13 @@ public class SplashActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(forceDialog, "forceDialog");
         transaction.commitAllowingStateLoss();
+    }
+    private String notificationProductId() {
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            return null;
+        }
+        Object moredata = extras.get(FCMMessagingService.KEY_MORE_DATA);
+        return moredata == null ? null : FCMMessagingService.extractProductId(moredata.toString());
     }
 }
